@@ -10,10 +10,11 @@ namespace Lmss.Dataacsess.Data.Interfaces
     public interface IRepository<T> where T : class
     {
         void Add(T entity);
-        void Edit(int id);
+        void Edit(T entity);
+        void Delete(T entity);
         void Save();
       
-        T Get(int Id);
+        T Get(int id);
         T Get(Expression<Func<T, bool>> filter);
         IEnumerable<T> GetAll(int id);
 

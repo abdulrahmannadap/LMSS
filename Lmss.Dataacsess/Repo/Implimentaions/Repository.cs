@@ -1,12 +1,6 @@
 ﻿using Lmss.Dataacsess.Data.Interfaces;
-using Lmss.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lmss.Dataacsess.Data.Implimentaions
 {
@@ -24,12 +18,19 @@ namespace Lmss.Dataacsess.Data.Implimentaions
             _dbSet.Add(entity);
         }
 
-        public void Edit(int id)
+        public void Delete(T entity)
         {
-            _dbSet.Find(id);
+            _dbSet.Remove(entity);
         }
 
-        public T Get(int Id)
+       
+
+        public void Edit(T entity)
+        {
+            _dbSet.Update(entity);  
+        }
+
+        public T Get(int id)
         {
             return _dbSet.Find(id);
         }
@@ -41,7 +42,7 @@ namespace Lmss.Dataacsess.Data.Implimentaions
 
         public IEnumerable<T> GetAll(int id)
         {
-            return _dbSet.GetAll(id);
+            yield return _dbSet.Find(id);
         }
 
         public void Save()
